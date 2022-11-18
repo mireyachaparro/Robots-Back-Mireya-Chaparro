@@ -44,14 +44,14 @@ export class RobotController {
         }
     }
 
-    // async patch(req: Request, resp: Response, next: NextFunction) {
-    //     try {
-    //         const robot = await this.repository.patch(req.params.id, req.body);
-    //         resp.json({ robot });
-    //     } catch (error) {
-    //         next(this.#createHttpError(error as Error));
-    //     }
-    // }
+    async patch(req: Request, resp: Response, next: NextFunction) {
+        try {
+            const robot = await this.repository.patch(req.params.id, req.body);
+            resp.json({ robot });
+        } catch (error) {
+            next(this.#createHttpError(error as Error));
+        }
+    }
 
     async delete(req: Request, resp: Response, next: NextFunction) {
         try {

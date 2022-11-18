@@ -43,13 +43,13 @@ describe('Given RobotRepository', () => {
         expect(result.name).toEqual(newRobot.name);
     });
 
-    // test('Then patch should return the object with the updated property', async () => {
-    //     const updatedRobot = {
-    //         name: 'Tachikomas',
-    //     };
-    //     const result = await repository.patch(testIds[0], updatedRobot);
-    //     expect(result.name).toEqual(updatedRobot.name);
-    // });
+    test('Then patch should return the object with the updated property', async () => {
+        const updatedRobot = {
+            name: 'Tachikomas',
+        };
+        const result = await repository.patch(testIds[0], updatedRobot);
+        expect(result.name).toEqual(updatedRobot.name);
+    });
 
     test('Then delete should return an empty object', async () => {
         const result = await repository.delete(testIds[0]);

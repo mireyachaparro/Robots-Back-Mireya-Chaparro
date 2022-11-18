@@ -39,13 +39,13 @@ export class RobotRepository implements Data<Robot> {
         const result = await this.#Model.create(data);
         return result as Robot;
     }
-    // async patch(id: id, data: Partial<Robot>): Promise<Robot> {
-    //     const result = await this.#Model.findByIdAndUpdate(id, data, {
-    //         new: true,
-    //     });
-    //     if (!result) throw new Error('Not found id');
-    //     return result as Robot;
-    // }
+    async patch(id: id, data: Partial<Robot>): Promise<Robot> {
+        const result = await this.#Model.findByIdAndUpdate(id, data, {
+            new: true,
+        });
+        if (!result) throw new Error('Not found id');
+        return result as Robot;
+    }
 
     async delete(id: id): Promise<void> {
         const result = await this.#Model.findByIdAndDelete(id);

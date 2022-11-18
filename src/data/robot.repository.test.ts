@@ -51,7 +51,10 @@ describe('Given RobotRepository', () => {
             const result = await repository.post(newRobot);
             expect(result.name).toEqual(newRobot.name);
         });
-
+        test('Then delete...', async () => {
+            const result = await repository.delete(testIds[0]);
+            expect(result).toEqual({ id: testIds[0] });
+        });
         test('Then if id is bad formated delete should throw an error', async () => {
             expect(async () => {
                 await repository.delete(2);

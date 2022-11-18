@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import { CustomError } from './interfaces/error.js';
-// import { taskRouter } from './router/task.js';
+import { robotRouter } from './router/robots.router.js';
 
 export const app = express();
 app.disable('x-powered-by');
@@ -21,10 +21,17 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (_req, res) => {
-    res.send('API Express de tareas').end();
+    res.send(
+        `<h1>API Express de robots</h1><br>
+        <p>/robots -> devuelve un array con todos los robots de la BD</p>
+        <p>/robots/:idRobot -> devuelve un robot de la BD por id</p>
+        <p>/robots/create -> recibe un robot (sin id), lo crea en la BD y devuelve el robot recién creado</p>
+        <p>/robots/update -> recibe un robot, modifica en la BD el robot con la misma id que el recibido, y devuelve el robot modificado</p>
+        <p>/robots/delete/:idRobot -> elimina de la BD un robot por id y devuelve un objeto con la id</p>`
+    ).end();
 });
 
-// app.use('/tasks', taskRouter);
+app.use('/robots', robotRouter);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use(

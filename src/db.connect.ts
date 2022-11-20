@@ -6,4 +6,3 @@ export function dbConnect() {
     const uri = `mongodb+srv://${USER}:${PASSWD}@${CLUSTER}/${DBName}?retryWrites=true&w=majority`;
     return mongoose.connect(uri);
 }
-//

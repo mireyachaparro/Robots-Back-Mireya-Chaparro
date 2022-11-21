@@ -4,9 +4,9 @@
 
 Tendrás que crear un frontend en React (con Redux) que permita al usuario gestionar un listado con sus robots. El usuario debe poder listar, crear, modificar y borrar robots. Cada robot debe mostrar un nombre, una imagen (URL de internet) y unas características:
 
-- Velocidad (0-10)
-- Resistencia (0-10)
-- Fecha de creación
+-   Velocidad (0-10)
+-   Resistencia (0-10)
+-   Fecha de creación
 
 Tendrás que crear una base de datos MongoDB para almacenar los robots, en Atlas.
 
@@ -25,3 +25,6 @@ Tendrás que crear una API REST con Express, con los siguientes endpoints:
 Recuerda que cada response debe ir con un código de status adecuado y que todos los body de las responses tienen que ser objetos en JSON.
 
 Sora decirlo: TESTEAMOS todo y lo mostramos en SonarCloud.
+
+-   falta:
+    -   update

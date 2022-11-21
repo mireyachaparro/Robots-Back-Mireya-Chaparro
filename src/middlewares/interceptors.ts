@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
-import { HTTPError } from '../interfaces/error';
-import { readToken } from '../services/auth';
+import { HTTPError } from '../interfaces/error.js';
+import { readToken } from '../services/auth.js';
 
 interface ExtraRequest extends Request {
-    payload: JwtPayload;
+    payload?: JwtPayload;
 }
 
 export const logged = (

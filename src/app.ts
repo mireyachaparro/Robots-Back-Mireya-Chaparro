@@ -3,6 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import { CustomError } from './interfaces/error.js';
 import { robotRouter } from './router/robots.router.js';
+import { usersRouter } from './router/users.js';
 
 export const app = express();
 app.disable('x-powered-by');
@@ -32,6 +33,7 @@ app.get('/', (_req, res) => {
 });
 
 app.use('/robots', robotRouter);
+app.use('/users', usersRouter);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use(

@@ -4,9 +4,16 @@ import morgan from 'morgan';
 import { CustomError } from './interfaces/error.js';
 import { robotRouter } from './router/robots.router.js';
 import { usersRouter } from './router/users.js';
+// import favicon from 'serve-favicon'; //para poner el favicon pero no funciona por __dirname
+// import path from 'path'; //para poner el favicon pero no funciona por __dirname
+// import * from "express-title"; //da error, es para poner titulo
 
 export const app = express();
+// app.use(favicon(path.join(__dirname, 'public', 'logo.jpg'))); //para poner el favicon pero no funciona por __dirname
+// app.use(favicon(__dirname + '/favicon.ico')); //para poner el favicon pero no funciona por __dirname
+
 app.disable('x-powered-by');
+// app.use(require('express-title')()); //da error, es para poner titulo
 
 const corsOptions = {
     origin: '*',

@@ -17,7 +17,7 @@ export type Robot = {
     img: string;
     speed: number;
     resistance: number;
-    date: Date;
+    date: string;
     owner: typeof mongoose.Types.ObjectId;
 };
 
@@ -36,7 +36,7 @@ export const robotSchema = new Schema<Robot>({
     },
     speed: { type: Number, min: 0, max: 10 },
     resistance: { type: Number, min: 0, max: 10 },
-    date: Date,
+    date: String,
     owner: {
         type: mongoose.Types.ObjectId,
         ref: 'User',

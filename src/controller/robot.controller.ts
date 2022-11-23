@@ -1,14 +1,14 @@
 import { NextFunction, Request, Response } from 'express';
-import { Robot } from '../entities/robot.entitie.js';
-import { User } from '../entities/user.entitie.js';
+import { RobotI } from '../entities/robot.entitie.js';
+import { UserI } from '../entities/user.entitie.js';
 import { HTTPError } from '../interfaces/error.js';
 import { ExtraRequest } from '../middlewares/interceptors.js';
 import { BasicRepo, Repo } from '../repositories/repo.js';
 
 export class RobotController {
     constructor(
-        public repository: Repo<Robot>,
-        public userRepo: BasicRepo<User>
+        public repository: Repo<RobotI>,
+        public userRepo: BasicRepo<UserI>
     ) {
         //
     }
@@ -43,7 +43,7 @@ export class RobotController {
             const user = await this.userRepo.get(req.payload.id);
             req.body.owner = user.id;
             const robot = await this.repository.post(req.body);
-            resp.json(robot);
+            resp.status(201).json(robot);
         } catch (error) {
             const httpError = new HTTPError(
                 503,
@@ -65,7 +65,6 @@ export class RobotController {
 
     async delete(req: Request, resp: Response, next: NextFunction) {
         try {
-            console.log(req);
             await this.repository.delete(req.params.id);
             resp.json({});
         } catch (error) {

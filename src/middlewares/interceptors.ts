@@ -37,11 +37,11 @@ export const who = async (
     res: Response,
     next: NextFunction
 ) => {
-    const repo = new RobotRepository();
+    const repo = RobotRepository.getInstance();
     try {
         const robot = await repo.get(req.params.id);
         console.log(robot);
-        if (robot.owner.toString() !== (req.payload as JwtPayload).id) {
+        if (req.payload && robot.owner._id.toString() !== req.payload.id) {
             next(
                 new HTTPError(
                     403,

@@ -76,5 +76,46 @@ describe('Given an app with /robots route', () => {
                 .send({ name: 'PepeBot' });
             expect(response.status).toBe(201);
         });
+        test('then the patch to url /robots/:id without authorization should send status 403', async () => {
+            //para hacer el post necesitas los datos y esos datos estan en el body, para eso utilizamos el metodo send
+            const response = await request(app).patch('/robots/').send({}); //lo ponemos vacio porque como se que no voy a poder hacer post porque no estoy autenticado, no hace falta ni que ponga nada
+            expect(response.status).toBe(404);
+        });
+        test('then the patch to url /robots/:id with authorization and invalid format should send status 503', async () => {
+            //metodo set de supertest vale para setear cabeceras, 2 argumentos:
+            const response = await request(app)
+                .patch('/robots/23')
+                .set('Authorization', `Bearer ${token}`)
+                .send({});
+            expect(response.status).toBe(503);
+        });
+
+        test('then the patch to url /robots/:id with authorization but non-existant should send status 404', async () => {
+            //metodo set de supertest vale para setear cabeceras, 2 argumentos:
+            const response = await request(app)
+                .patch('/robots/63767230468689cb0b474401')
+                .set('Authorization', `Bearer ${token}`)
+                .send({});
+            expect(response.status).toBe(404);
+        });
+
+        //delete
+        test('then the delete to url /robots/:id without authorization should send status 403', async () => {
+            //para hacer el post necesitas los datos y esos datos estan en el body, para eso utilizamos el metodo send
+            const response = await request(app).delete('/robots/23'); //lo ponemos vacio porque como se que no voy a poder hacer post porque no estoy autenticado, no hace falta ni que ponga nada
+            expect(response.status).toBe(403);
+        });
+        test('then the delete to url /robots/:id with authorization and a valid id but non-existent should send status 404', async () => {
+            const response = await request(app)
+                .delete('/robots/63767230468689cb0b474401')
+                .set('Authorization', `Bearer ${token}`);
+            expect(response.status).toBe(404);
+        });
+        test('then the delete to url /robots/:id with authorization and an invalid id should send status 503', async () => {
+            const response = await request(app)
+                .delete('/robots/23')
+                .set('Authorization', `Bearer ${token}`);
+            expect(response.status).toBe(503);
+        });
     });
 });

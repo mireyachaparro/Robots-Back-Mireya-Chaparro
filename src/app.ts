@@ -1,11 +1,10 @@
-import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-import { CustomError } from './interfaces/error.js';
 import { robotRouter } from './router/robots.router.js';
 import { usersRouter } from './router/users.js';
 import { errorManager } from './middlewares/errors.js';
 import { setCors } from './middlewares/cors.js';
+import express from 'express';
 
 export const app = express();
 
@@ -31,9 +30,9 @@ app.get('/', (_req, res) => {
         `<h1>API Express de robots</h1><br>
         <p>/robots -> devuelve un array con todos los robots de la BD</p>
         <p>/robots/:idRobot -> devuelve un robot de la BD por id</p>
-        <p>/robots/create -> recibe un robot (sin id), lo crea en la BD y devuelve el robot recién creado</p>
-        <p>/robots/update -> recibe un robot, modifica en la BD el robot con la misma id que el recibido, y devuelve el robot modificado</p>
-        <p>/robots/delete/:idRobot -> elimina de la BD un robot por id y devuelve un objeto con la id</p>`
+        <p>/robots/ -> recibe un robot (sin id), lo crea en la BD y devuelve el robot recién creado</p>
+        <p>/robots/:idRobot -> recibe un robot, modifica en la BD el robot con la misma id que el recibido, y devuelve el robot modificado</p>
+        <p>/robots/:idRobot -> elimina de la BD un robot por id y devuelve un objeto con la id</p>`
     ).end();
 });
 
